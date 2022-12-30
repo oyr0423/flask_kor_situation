@@ -21,7 +21,7 @@ jmespath==0.10.0
 joblib==1.0.1
 MarkupSafe==2.1.1
 nltk==3.8
-numpy==1.17.0
+numpy==1.22.3
 packaging==20.9
 pandas==1.2.4
 Pillow==9.3.0
