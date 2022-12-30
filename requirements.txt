@@ -44,7 +44,7 @@ sklearn==0.0
 sqlparse==0.4.1
 threadpoolctl==2.1.0
 tokenizers==0.10.3
-torch==1.11.0
+torch==1.13.1
 torchvision==0.14.1
 tqdm==4.61.0
 transformers==4.6.1
