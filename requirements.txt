@@ -20,7 +20,7 @@ Jinja2==3.0.3
 jmespath==0.10.0
 joblib==1.0.1
 MarkupSafe==2.0.1
-nltk==3.8
+nltk==3.6.7
 numpy==1.22.3
 packaging==20.9
 pandas==1.2.4
