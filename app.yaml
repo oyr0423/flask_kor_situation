@@ -32,4 +32,4 @@ resources:
   volumes:
   - name: ramdisk1
     volume_type: tmpfs
-    size_gb: 6
+    size_gb: 5.6
