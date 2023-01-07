@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restful import Resource, Api
+from flask_restful import Resource, Api, reqparse, abort
 
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -46,12 +46,29 @@ print(result_array)
 
 result_list = list(result_array)
 
+
+todos = {
+    1 : {"task":"Write Hello World Program", "summary":"write the code using python."},
+    2 : {"task" : "Task2", "summary":"writing task2."},
+    3 : {"task" : "Task3", "summary" : "this is task3."}
+}
+
 class HelloWorld(Resource):
     def get(self):
         # return {'hello': len(sentence_embeddings[0])}
         return result_list
 
+class ToDoList(Resource):
+    def get(self):
+        return todos
+
+class ToDo(Resource):
+    def get(self, todo_id):
+        return todos[todo_id]
+
 api.add_resource(HelloWorld, '/')
+api.add_resource(ToDo, '/todos/<int:todo_id>')
+api.add_resource(ToDoList, '/todos')
 
 if __name__ == '__main__':
     app.run(debug=True)
