@@ -11,10 +11,62 @@ api = Api(app)
 
 
 ##
-sentences = ["내가 새로 시작할 만한 취미가 있을까? ",
-             "해야될 일이 있는데 자꾸 미루게 돼.",
-             "나에게 어울릴 것 같은 취미",
-             "오늘 저녁 뭐먹지?"
+sentences = [
+"아 열받아.",
+"너무 화가 났다. ",
+"진짜 열받았다. ",
+"너무 화가나서 참을 수 없었다. ",
+"화가 치밀었다. ",
+"기분이 너무 좋다. ", 
+"오늘은 기분이 좋다. ",
+"너무 기분 좋은 날이다.",
+"기분이 괜찮은 것 같다. ",
+"기분이 너무 안좋아. ",
+"기분 진짜 안좋았다.", 
+"우울하다.",
+"너무 우울해",
+"울고 싶다. ",
+"울 것 같았다. ",
+"너무 바빠.",
+"진짜 정신이 없다. ",
+"더 이상 희망이 없는 것 같다. ",
+"희망이 사라진 것 같다." ,
+"너무 슬펐다. ",
+"슬프다. ",
+"누구가 위로를 해줬다. ",
+"누구에게 위로를 받았다. ",
+"너무 지쳤다." ,
+"지칠대로 지친 것 같다.", 
+"너무 피곤하다." ,
+"오늘 진짜 피곤한 하루다." ,
+"아 너무 심심해." ,
+"진짜 심심하다." ,
+"지루했다." ,
+"너무 속상하다.", 
+"진짜 속상하다." ,
+"뭔가 불안하다." ,
+"계속 불안하다." ,
+"너무 걱정이 된다." ,
+"계속 걱정 된다.",
+"진짜 걱정된다.", 
+"너무 스트레스 받는다.", 
+"아 스트레스",
+"내가 할 수 있는게 없는 느낌이다.", 
+"무력함을 느낀다.",
+"아무것도 할 수 있는게 없는 느낌이야.",
+"진짜 좀 쉬어야 될 거 같다.",
+"쉬고 싶다.", 
+"휴식이 진짜 필요한 거 같다.", 
+"난 좀 쉬어야 될 거 같다." ,
+"지금 정신 상태가 너무 안좋다.",
+"지금 심리 상태가 너무 안좋다.", 
+"상태가 너무 안좋다." ,
+"정신적으로 너무 지친다.", 
+"정신적으로 힘들다." ,
+"그만 살고 싶다." ,
+"죽고싶다.",
+"자살하고 싶다.", 
+"삶을 끝내고 싶다." 
 ]
 
 query_sentences = ["인간관계에 관해서 나에게 필요한 조언이 있을까?", 
@@ -431,7 +483,6 @@ eng_sentence_embeddings = model_eng.encode(eng_sentences)
 eng_query_sentence_embeddings = model_eng.encode(eng_query_sentences)
 
 
-
 @app.route("/predict")
 def predict():
     sentence = request.args.get("sentence")
@@ -443,8 +494,8 @@ def predict():
         ).flatten()
 
     result_array = []
-    for i in range(0, 4):
-        result_array.append({'hello' : float(similarity_score[i])})
+    for i in range(0, 55):
+        result_array.append({'h' : float(similarity_score[i])})
         result_list = list(result_array)
 
     return result_list
@@ -462,7 +513,7 @@ def query_predict():
 
     result_array = []
     for i in range(0, 390):
-        result_array.append({'hello' : float(query_similarity_score[i])})
+        result_array.append({'h' : float(query_similarity_score[i])})
         result_list = list(result_array)
 
     return result_list
@@ -481,11 +532,15 @@ def eng_predict():
 
     result_array = []
     for i in range(0, 4):
-        result_array.append({'hello' : float(similarity_score[i])})
+        result_array.append({'h' : float(similarity_score[i])})
         result_list = list(result_array)
 
     return result_list
 
+
+@app.route("/test")
+def test():
+    return "test"
 
 @app.route("/engquerypredict")
 def eng_query_predict():
@@ -499,7 +554,7 @@ def eng_query_predict():
 
     result_array = []
     for i in range(0, 4):
-        result_array.append({'hello' : float(eng_query_similarity_score[i])})
+        result_array.append({'h' : float(eng_query_similarity_score[i])})
         result_list = list(result_array)
 
     return result_list
